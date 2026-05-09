@@ -1,64 +1,25 @@
-import { PlayCircleIcon } from "lucide-react";
-import { Container } from "./components/Container";
-import { CountDown } from "./components/CountDown";
-import { Cycles } from "./components/Cycles";
-import { DefaultButton } from "./components/DefaultButton";
-import { DefaultInput } from "./components/DefaultInput";
-import { Footer } from "./components/Footer";
-import { Logo } from "./components/Logo";
-import { Menu } from "./components/Menu";
+import { useState } from "react";
+import type { TaskStateModel } from "./models/TaskStateModel";
+import { Home } from "./pages/Home";
+
+const initialState: TaskStateModel = {
+  tasks: [],
+  secondsRemaining: 0,
+  formattedSecondsRemaining: "00:00",
+  activeTask: null,
+  currentCycle: 0,
+  config: {
+    workTime: 25,
+    shortBreakTime: 5,
+    longBreakTime: 15,
+  },
+};
+
 export function App() {
+  const [state, setState] = useState(initialState);
   return (
     <>
-      <Container>
-        <Logo />
-      </Container>
-
-      <Container>
-        <Menu />
-      </Container>
-
-      <Container>
-        <CountDown />
-      </Container>
-
-      <Container>
-        <form className="form" action="">
-          <div className="formRow">
-            <DefaultInput
-              id="inputForm"
-              type="text"
-              labelText="Task"
-              placeholder="Digite algo"
-            />
-          </div>
-        </form>
-      </Container>
-
-      <Container>
-        <form className="form" action="">
-          <div className="formRow">
-            <Cycles />
-          </div>
-        </form>
-      </Container>
-
-      <Container>
-        <form className="form" action="">
-          <div className="formRow">
-            <DefaultButton icon={<PlayCircleIcon />} color="red" />
-          </div>
-        </form>
-      </Container>
-
-      <Container>
-        <Footer>
-          <a href="">Entenda a tecnica Pomodoro 🍅</a>
-          <a href="">
-            Chornos Pomodoro &copy; {new Date().getFullYear()} feito com ❤️
-          </a>
-        </Footer>
-      </Container>
+      <Home state={state} setState={setState} />
     </>
   );
 }

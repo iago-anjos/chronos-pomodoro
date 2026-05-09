@@ -7,7 +7,7 @@
   color: var(--text-over-primary);
   border: none;
   padding: 0.8rem;
-  margin: 3.8rem 0;
+  margin: 1.2rem 0 3.8rem 0;
   border-radius: 0.8rem;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
